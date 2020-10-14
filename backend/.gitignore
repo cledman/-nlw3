@@ -2,9 +2,7 @@
 
 # dependencies
 /node_modules
-/uploads/.png
-/uploads/.jpg
-/uploads/.bmp
+/uploads/
 /.pnp
 .pnp.js
 
