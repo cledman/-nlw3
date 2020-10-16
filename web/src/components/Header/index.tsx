@@ -24,9 +24,9 @@ const Header: React.FC<Props> =({toggleTheme}) => {
                 height={10}             
                 width={40}
                 handleDiameter={20}
-                offColor="#a8a7a7"
+                offColor="#2092a7"
                 onColor="#000"
-                onHandleColor="f69c32"
+                onHandleColor="#15c3d3"
                 offHandleColor="#f69c32"
             />
             </div>
