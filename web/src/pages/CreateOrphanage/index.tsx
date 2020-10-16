@@ -7,6 +7,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 import Sidebar from "../../components/Sidebar/index";
 import MapIcon from "../../utils/mapIcon";
+import iconPumpkin from '../../images/abobora.png';
 import api from "../../services/api";
 
 import { useParams } from 'react-router-dom';
@@ -14,7 +15,7 @@ import { useParams } from 'react-router-dom';
 import { ThemeContext} from 'styled-components';
 import { Container } from './styles';
 import { useHistory } from "react-router-dom";
-
+import Leaflet from 'leaflet';
 
 interface Props {
     toggleTheme():void;
@@ -32,7 +33,16 @@ const CreateOrphanage: React.FC<Props> =({toggleTheme}) => {
     const [open_on_weekends, setOpenOnWeekends] = useState(true);
     const [images, setImages] = useState<File[]>([]);
     const [previewImages, setPreviewImages] = useState<string[]>([]);
-  
+
+    const MapIcon2 = Leaflet.icon({
+    
+        iconUrl: iconPumpkin,
+      
+        iconSize: [58, 68],
+        iconAnchor: [29, 68],
+        popupAnchor: [0, -60]
+    })    
+
     function handleMapClick (event:LeafletMouseEvent){
         const {lat, lng} = event.latlng;
         setPosition({
@@ -100,7 +110,10 @@ const CreateOrphanage: React.FC<Props> =({toggleTheme}) => {
               />
 
               { position.latitude !==0 
-                ? <Marker interactive={false} icon={MapIcon} position={[position.latitude, position.longitude]} />
+                ? <Marker interactive={false} 
+                    icon={colors.mapStyle==='dark' ? MapIcon2: MapIcon}
+                    position={[position.latitude, position.longitude]} 
+                  />
                 : null
               }
             </Map>

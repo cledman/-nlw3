@@ -4,12 +4,14 @@ import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
 
 import mapMarkerImg from '../../images/map-marker.svg';
-import MapIcon from '../../utils/mapIcon';
+import MapIcon from '../../utils/mapIcon';  
+import iconPumpkin from '../../images/abobora.png';
+
 import api from '../../services/api';
 
 import { Container } from './styles';
 import { ThemeContext } from 'styled-components';
-
+import Leaflet from 'leaflet';
 
 interface Orphanage{
     id:number;
@@ -25,7 +27,17 @@ interface Props {
 const OrphanagesMap: React.FC<Props> =({toggleTheme}) => {
 
     const { colors, title } = useContext(ThemeContext);
-    const [orphanages, setOrphanages] = useState<Orphanage[]>([])   
+    const [orphanages, setOrphanages] = useState<Orphanage[]>([]) 
+
+    const MapIcon2 = Leaflet.icon({
+    
+        iconUrl: iconPumpkin,
+      
+        iconSize: [58, 68],
+        iconAnchor: [29, 68],
+        popupAnchor: [0, -60]
+    })
+    
      
     useEffect( () => {
         api.get('orphanages').then( response =>{
@@ -69,7 +81,7 @@ const OrphanagesMap: React.FC<Props> =({toggleTheme}) => {
                     return(
                         <Marker
                         key={orphanage.id}
-                        icon={MapIcon}
+                        icon={colors.mapStyle==='dark' ? MapIcon2: MapIcon}
                         position={[orphanage.latitude,orphanage.longitude]}
                     >
                         <Popup  
