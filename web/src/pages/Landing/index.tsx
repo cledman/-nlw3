@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import  Switch from 'react-switch';
 import { Container } from './styles';
 import { ThemeContext} from 'styled-components';
 import { Link } from 'react-router-dom'

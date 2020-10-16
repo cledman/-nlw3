@@ -8,7 +8,9 @@ declare module 'styled-components'{
         landingImage:string,
         primary: string,
         secundary: string,
-        text:string
+        text:string,
+        mapStyle:string,
+        mapIcon:string,
     }
    }
 }

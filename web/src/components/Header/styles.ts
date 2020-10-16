@@ -7,7 +7,7 @@ export const Container = styled.div`
     display:flex;
     height:60px;
     justify-content: flex-end;
-    padding-right: 10px;
+    right: 10px;
     position: absolute;
     width:100vw;
     z-index:999 !important;
