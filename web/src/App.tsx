@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/global.css'
+//import './styles/global.css'
 import 'leaflet/dist/leaflet.css';
 import Routes from './routes';
 
@@ -21,9 +21,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-    <GlobalStyle />    
-    <Header toggleTheme={toggleTheme} />
-    <Routes/>
+      <GlobalStyle />    
+      <Header toggleTheme={toggleTheme} />
+      <Routes/>
     </ThemeProvider>
   );
 }

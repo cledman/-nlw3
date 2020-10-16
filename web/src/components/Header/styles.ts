@@ -10,4 +10,5 @@ export const Container = styled.div`
     padding-right: 10px;
     position: absolute;
     width:100vw;
+    z-index:999 !important;
 `;

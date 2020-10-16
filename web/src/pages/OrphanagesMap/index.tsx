@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useContext , useEffect, useState } from 'react';
+import { Container } from './styles';
+import { ThemeContext} from 'styled-components';
+import { Link } from 'react-router-dom'
 import { FiPlus, FiArrowRight } from 'react-icons/fi';
 import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
+import  Switch from 'react-switch';
+import logoImg from '../../images/logo.svg';
+import MapIcon from '../../utils/mapIcon';
+import api from '../../services/api';
 
-import mapMarkerImg from '../images/map-marker.svg';
-import MapIcon from '../utils/mapIcon';
-import '../styles/pages/orphanages-map.css';
-import api from '../services/api';
+import mapMarkerImg from '../../images/map-marker.svg';
+//import '../../styles/pages/orphanages-map.css';
 
 interface Orphanage{
     id:number;
@@ -15,19 +19,24 @@ interface Orphanage{
     name:string;
 }
 
-function OrphanagesMap(){
 
-    const [orphanages, setOrphanages] = useState<Orphanage[]>([])
-    
+interface Props {
+    toggleTheme():void;
+}
+
+const Landing: React.FC<Props> =({toggleTheme}) => {
+
+    const { colors, title } = useContext(ThemeContext);
+    const [orphanages, setOrphanages] = useState<Orphanage[]>([])    
     useEffect( () => {
         api.get('orphanages').then( response =>{
             setOrphanages(response.data);
         })
-    }, []);
+    }, []);    
 
     return(
-        <div id="page-map">
-            <aside>
+        <Container id="page-map">
+           <aside>
 
                 <header>
                     <img src={mapMarkerImg} alt="Map marker img"/>
@@ -55,7 +64,6 @@ function OrphanagesMap(){
                 <TileLayer 
                      url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`} 
                 />
-
                 {orphanages.map(orphanage =>{
                     return(
                         <Marker
@@ -77,13 +85,14 @@ function OrphanagesMap(){
                     </Marker>                        
                     )
                 })}
+              
             </Map>    
 
             <Link to ="/orphanages/create" className="create-orphanage">
                 <FiPlus size="32" color="#fff" />
-            </Link>
-        </div>
+            </Link>         
+        </Container>
     );
 }
 
-export default OrphanagesMap;
+export default Landing;

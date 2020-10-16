@@ -3,6 +3,7 @@ import  Switch from 'react-switch';
 import { Container } from './styles';
 import { ThemeContext} from 'styled-components';
 
+
 interface Props {
     toggleTheme():void;
 }
